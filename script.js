@@ -1,12 +1,13 @@
-// script.js
+// script.js (Versão CORRIGIDA e Limpa)
 document.addEventListener('DOMContentLoaded', () => {
     const chatForm = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
     const chatBox = document.getElementById('chat-box');
     const sendBtn = document.getElementById('send-btn');
 
-    // URL do nosso servidor Node.js
-    const API_URL = 'http://localhost:3000/ask';
+    // AQUI É O LUGAR CORRETO: A API_URL deve ser declarada no início do escopo principal.
+    const API_URL = '/.netlify/functions/ask'; 
+    // Fim da correção. Não precisa do bloco document.addEventListener aninhado.
 
     // Função para adicionar uma mensagem na tela
     function addMessage(text, sender) {
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sendBtn.disabled = true; // Desabilita o botão
 
         try {
-            // 3. Chama o backend (server.js)
+            // 3. Chama o backend (agora usando a API_URL correta)
             const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
